@@ -7,4 +7,14 @@ class Guest
     @wallet = wallet
   end
 
+  def sufficient_funds?(room)
+    return wallet >= room.price()
+  end
+
+  def book_room(room)
+    if sufficient_funds?(room)
+      @wallet -= room.price
+    end
+  end
+
 end

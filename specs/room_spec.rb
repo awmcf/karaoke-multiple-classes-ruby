@@ -8,8 +8,8 @@ class RoomTest < MiniTest::Test
 
   def setup
     @song_1 = Song.new("Moon River")
-    @guest_1 = Guest.new("Frank")
-    @room_1 = Room.new("Mainstage Room")
+    @guest_1 = Guest.new("Frank", 100)
+    @room_1 = Room.new("Mainstage Room", 20)
   end
 
   def test_room_name
@@ -34,5 +34,11 @@ class RoomTest < MiniTest::Test
     @room_1.add_song(@song_1.title)
     assert_equal(["Moon River"], @room_1.songs_list)
   end
+
+  def test_can_provide_room
+    @room_1.provide_room(@guest_1, @room_1)
+    assert_equal(80, @guest_1.wallet())
+  end
+
 
 end
