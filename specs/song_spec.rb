@@ -9,7 +9,7 @@ class SongTest < MiniTest::Test
   end
 
   def test_song_has_title
-    assert_equal("Moon River", @song.title())
+    assert_equal("Moon River", @song_1.title())
   end
 
 end
