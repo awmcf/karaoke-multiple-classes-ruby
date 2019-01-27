@@ -1,13 +1,14 @@
 class Room
 
-attr_accessor :name, :songs_list, :guests, :room_in_use, :price
+attr_accessor :name, :songs_list, :guests, :room_in_use, :price, :capacity
 
   def initialize(name, price)
     @name = name
     @songs_list = []
     @guests = []
     @room_in_use = false
-    @price = 20
+    @price = price
+    @capacity = 2
   end
 
   def check_in_guest(guest)
@@ -24,9 +25,9 @@ attr_accessor :name, :songs_list, :guests, :room_in_use, :price
     @songs_list.push(song_name)
   end
 
-  def provide_room(guest, room)
+  def provide_room(guests, room)
     if @room_in_use == false
-      guest.book_room(room)
+      guests.book_room(room)
     end
   end
 

@@ -9,6 +9,9 @@ class RoomTest < MiniTest::Test
   def setup
     @song_1 = Song.new("Moon River")
     @guest_1 = Guest.new("Frank", 100)
+    @guest_2 = Guest.new("John", 80)
+    @guest_3 = Guest.new("Nina", 150)
+    guests = [@guest_1, @guest_2, @guest_3]
     @room_1 = Room.new("Mainstage Room", 20)
   end
 
@@ -21,13 +24,13 @@ class RoomTest < MiniTest::Test
   end
 
   def test_check_in_guest
-    @room_1.check_in_guest(@guest_1.name)
-    assert_equal(true ,@room_1.room_in_use)
+    @room_1.check_in_guest(@guest_1)
+    assert_equal(1 ,@room_1.guests.length)
   end
 
   def test_check_out_guest
-    @room_1.check_out_guest(@guest_1.name)
-    assert_equal(false ,@room_1.room_in_use)
+    @room_1.check_out_guest(@guest_1)
+    assert_equal(0 ,@room_1.guests.length)
   end
 
   def test_add_song_to_a_room
@@ -39,6 +42,5 @@ class RoomTest < MiniTest::Test
     @room_1.provide_room(@guest_1, @room_1)
     assert_equal(80, @guest_1.wallet())
   end
-
 
 end
